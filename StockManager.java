@@ -11,13 +11,15 @@ public class StockManager
 {
     // A list of the products.
     private ArrayList<Product> stock;
-
+    
     /**
      * Initialise the stock manager.
      */
     public StockManager()
     {
         stock = new ArrayList<>();
+        int size  = stock.size();
+        
     }
 
     /**
@@ -26,9 +28,15 @@ public class StockManager
      */
     public void addProduct(Product item)
     {
-        stock.add(item);
+        for (Product p : stock){
+            if (p != item){
+                stock.add(item);
+            }
+          else
+          stock.add(null);
+        
     }
-    
+    }
     /**
      * Receive a delivery of a particular product.
      * Increase the quantity of the product by the given amount.
@@ -37,6 +45,14 @@ public class StockManager
      */
     public void delivery(int id, int amount)
     {
+       for (Product p : stock){
+            if (p.getID()== id){
+            p.increaseQuantity(amount);
+            break;
+            }
+        } 
+        
+        
     }
     
     /**
@@ -46,7 +62,25 @@ public class StockManager
      */
     public Product findProduct(int id)
     {
+       for (Product a: stock){
+        if (a.getID() == id )
+        return a;
+        }
         return null;
+    }
+    
+    public Product findProduct(String name){
+   
+        for (Product a: stock){
+        
+        if(a.equals(name)){
+        return a;
+        }
+        
+        }
+    return null;
+    
+    
     }
     
     /**
@@ -58,6 +92,11 @@ public class StockManager
      */
     public int numberInStock(int id)
     {
+        for (Product p : stock){
+            if (p.getQuantity()>0){
+            return p.getQuantity();
+            }
+        }
         return 0;
     }
 
@@ -66,5 +105,7 @@ public class StockManager
      */
     public void printProductDetails()
     {
+         for (Product p : stock)
+            System.out.println(p);
     }
 }

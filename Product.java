@@ -25,6 +25,8 @@ public class Product
         this.name = name;
         quantity = 0;
     }
+    
+  
 
     /**
      * @return The product's id.
